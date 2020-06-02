@@ -15,7 +15,7 @@ variables:
   webAppName: '{{ webAppName }}'
   
   # Environment name
-  environmentName: '{{ webAppName }}'
+  environmentName: '{{ environmentName }}'
 
 stages:
 - stage: Build
@@ -37,6 +37,13 @@ stages:
         npm run build --if-present
         npm test --if-present
       displayName: 'npm install, build and test'
+    
+    - task: CopyFiles@2
+      displayName: 'Create config'
+      inputs:
+        Contents: config.sample.json
+        TargetFolder: $(Build.ArtifactStagingDirectory)/config.$(environmentName).json
+        OverWrite: true
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
