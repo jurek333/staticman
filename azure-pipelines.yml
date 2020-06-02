@@ -31,7 +31,7 @@ stages:
       displayName: 'Create config'
       inputs:
         Contents: config.sample.json
-        TargetFolder: $(Build.ArtifactStagingDirectory)/config.$(environmentName).json
+        TargetFolder: $(Build.ArtifactStagingDirectory)/config.json
         OverWrite: true
 
     - task: ArchiveFiles@2
